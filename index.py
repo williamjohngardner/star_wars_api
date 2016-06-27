@@ -1,5 +1,6 @@
 import requests
 
+
 choice = int(input('''
     ***STAR WARS SWAPI DATABASE***
     Enter a Number to Explore SWAPI
@@ -11,16 +12,8 @@ choice = int(input('''
 if choice == 1:
   url = "http://swapi.co/api/people"
   response = requests.get(url).json()
-  if response['next']:
-      while response['next']:
-        for person in response["results"]:
-            print(person["name"])
-        url = response['next']
-        response = requests.get(url).json()
-      else:
-          for person in response["results"]:
-              print(person["name"])
-
+  for person in response["results"]:
+      print(person["name"])
 
 if choice == 2:
   url = "http://swapi.co/api/films"
