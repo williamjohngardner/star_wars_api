@@ -19,9 +19,10 @@ def get_pagination(response):
 
 def new_url(url, new_choice):
     new_url = "{}/{}".format(url, new_choice)
-    response = requests.get(new_url).json()
-    for key, value in response.items():
-        return key, value
+    # response = requests.get(new_url).json()
+    return new_url
+    #for key, value in response.items():
+    #    return key, value
 
 
 choice = int(input('''
@@ -33,7 +34,6 @@ choice = int(input('''
 '''))
 
 
-
 if choice == 1:
   url = "http://swapi.co/api/people"
   response = requests.get(url).json()
@@ -42,8 +42,9 @@ if choice == 1:
   new_choice = int(input("Enter ID Number To See More Information: "))
   url = "http://swapi.co/api/people"
   new_url = new_url(url, new_choice)
-  for item in new_url:
-    print(item)
+  response = requests.get(new_url).json()
+  for key, value in response.items():
+    print(key, value)
 
 if choice == 2:
   url = "http://swapi.co/api/films"
@@ -55,16 +56,19 @@ if choice == 2:
 
   new_choice = int(input("Enter ID Number To See More Information: "))
   url = "http://swapi.co/api/films"
-  new_url(url, new_choice)
-  print(key, value)
+  new_url = new_url(url, new_choice)
+  response = requests.get(new_url).json()
+  for key, value in response.items():
+    print(key, value)
 
 if choice == 3:
-    print("choice3")
     url = "http://swapi.co/api/vehicles"
     response = requests.get(url).json()
     get_pagination(response)
 
     new_choice = int(input("Enter ID Number To See More Information: "))
     url = "http://swapi.co/api/vehicles"
-    new_url(url, new_choice)
-    print(key, value)
+    new_url = new_url(url, new_choice)
+    response = requests.get(new_url).json()
+    for key, value in response.items():
+      print(key, value)
